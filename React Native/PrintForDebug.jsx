@@ -8,49 +8,66 @@
 ///    les valeurs que contient le Map.
 ///
 ///    Utilisation:
-///    <PrintForDebug.printMap debugValues={{ 'clé': 'valeur', 'autreClé': 123 }} />
+///    - <PrintMap debugValues={{ 'clé': 'valeur', 'autreClé': 123 }} />
 ///
 /// 2. printString: Permet d'imprimer une chaîne de caractères simple.
 ///    C'est un wrapper autour du print standard pour une intégration cohérente
 ///    dans la classe PrintForDebug.
 ///
 ///    Utilisation:
-///    <PrintForDebug.printString debugPhrase='Message à imprimer' />
+///    - <PrintString debugPhrase='Message à imprimer' />
+///
+///
+/// 3. printListFor: Permet d'imprimer les éléments d'une liste jusqu'à un indice spécifié.
+///    Chaque élément est imprimé avec son indice dans la liste.
+///
+///    Utilisation:
+///    - <PrintListFor debugList={[1, 2, 3, 'a', 'b']} index={2} />
+///
+/// 4. printList: Permet d'imprimer une liste entière en une seule fois.
+///    La liste est imprimée dans son format de liste complet.
+///
+///    Utilisation:
+///    - <PrintList debugList={[1, 2, 3, 'a', 'b']} />
 ///
 /// *  Tips:
 ///    Pour faciliter le retrait des prints lors du deployments ajouter : // TODO: supprimer le print
 ///    avant chaque appel à PrintForDebug.printMap ou PrintForDebug.printString
+///    et utiliser la fonction de recherche de l'IDE pour trouver tous les appels
 
 
 
-
-
-
-import React from 'react';
-import { View, Text } from 'react-native';
-
+import React, { useEffect } from 'react';
 class PrintForDebug {
-    static printMap(debugValues) {
-        for (const [key, value] of Object.entries(debugValues)) {
-            console.log(`${key} : ${value}`);
-        }
-    }
+    const PrintListFor = ({ debugList, index }) => {
+        useEffect(() => {
+            PrintForDebug.printListFor(debugList, index);
+        }, [debugList, index]);
 
-    static printString(debugPhrases) {
-        console.log(debugPhrases);
-    }
+        return null;
+    };
+
+    const PrintListFor = ({ debugList, index }) => {
+        useEffect(() => {
+            PrintForDebug.printListFor(debugList, index);
+        }, [debugList, index]);
+
+        return null;
+    };
+
+    const PrintListFor = ({ debugList, index }) => {
+        useEffect(() => {
+            PrintForDebug.printListFor(debugList, index);
+        }, [debugList, index]);
+
+        return null;
+    };
+
+    const PrintList = ({ debugList }) => {
+        useEffect(() => {
+            PrintForDebug.printList(debugList);
+        }, [debugList]);
+
+        return null;
+    };
 }
-
-// Example usage in a React Native component
-const DebugComponent = () => {
-    PrintForDebug.printMap({'key': 'value', 'anotherKey': 123});
-    PrintForDebug.printString('Message to print');
-
-    return (
-        <View>
-            <Text>Check the console for debug output.</Text>
-        </View>
-    );
-}
-
-export default DebugComponent;
