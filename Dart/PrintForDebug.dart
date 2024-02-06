@@ -29,19 +29,45 @@
 ///    Utilisation:
 ///    - PrintForDebug.printList([1, 2, 3, 'a', 'b']);
 ///
+/// 5. printAlert: Permet d'imprimer une alerte en rouge.
+///    La chaîne de caractères est imprimée en rouge.
+///
+///    Utilisation:
+///    - PrintForDebug.printAlert('Alerte importante');
+///
+/// 6. printWarning: Permet d'imprimer un avertissement en jaune.
+///    La chaîne de caractères est imprimée en jaune.
+///
+///    Utilisation:
+///    - PrintForDebug.printWarning('Avertissement');
+///
+/// 7. printInfo: Permet d'imprimer une information en bleu.
+///    La chaîne de caractères est imprimée en bleu.
+///
+///    Utilisation:
+///    - PrintForDebug.printInfo('Information');
+///
+/// 8. printValidate: Permet d'imprimer une validation en vert.
+///    La chaîne de caractères est imprimée en vert.
+///
+///    Utilisation:
+///    - PrintForDebug.printValidate('Validation');
+///
+///
 /// *  Tips:
 ///    Pour faciliter le retrait des prints lors du deployments ajouter : // TODO: supprimer le print
 ///    avant chaque appel à PrintForDebug.printMap ou PrintForDebug.printString
 ///    et utiliser la fonction de recherche de l'IDE pour trouver tous les appels
 
 
-part of collecte_chimie;
-
 class PrintForDebug {
-  static void printMap(Map<String, dynamic> debugValues) {
+if (kDebugMode)
+    {
+   static void printMap(Map<String, dynamic> debugValues) {
     debugValues.forEach((key, value) {
       print('$key : $value');
     });
+    }
   }
 
   static void printString(String debugPhrases) {
@@ -49,12 +75,51 @@ class PrintForDebug {
   }
 
   static void printListFor(List<dynamic> debugList, int index) {
+  if (kDebugMode)
+    {
     for (var i = 0; i <= index; i++) {
       print('$index : ${debugList[i]}');
+    }
     }
   }
 
   static void printList(List<dynamic> debugList) {
-    print(debugList);
+      if (kDebugMode)
+      {
+      print(debugList);
+      }
   }
+
+    static void printAlert(String debugPhrases) {
+    if (kDebugMode)
+    {
+    print("\033[31m" + 'Alerte : $debugPhrases' + "\033[0m")
+
+    }
+    }
+
+    static void printWarning(String debugPhrases) {
+    if (kDebugMode)
+    {
+    print("\033[33m" + 'Warning : $debugPhrases' + "\033[0m")
+
+    }
+    }
+
+    static void printInfo(String debugPhrases) {
+    if (kDebugMode)
+    {
+    print("\03[34m" + 'Info : $debugPhrases' + "\033[0m")
+
+    }
+    }
+
+    static void printValidate(String debugPhrases) {
+    if (kDebugMode)
+    {
+    print("\033[32m" + 'Validate : $debugPhrases' + "\033[0m")
+
+    }
+    }
+
 }
