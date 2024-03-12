@@ -60,6 +60,8 @@
 part of collecte_chimie;
 
 class PrintForDebug {
+  static bool debugLog = false;
+
   static void printMap(Map<String, dynamic> debugValues) {
     if (kDebugMode) {
       debugValues.forEach((key, value) {
@@ -117,6 +119,27 @@ class PrintForDebug {
     final String ANSI_RESET = "\u001B[0m";
     if (kDebugMode) {
       print(ANSI_GREEN + "SUCCESS: " + success + ANSI_RESET);
+    }
+  }
+  static void enableDebugLog() {
+    debugLog = true;
+    if(debugLog == true){
+      printSuccess('Debug log is enabled');
+    }
+  }
+
+  static void disableDebugLog() {
+    debugLog = false;
+    if(debugLog == false){
+      printError('Debug log is disable');
+    }
+  }
+
+  static void writeLog(String log) {
+    if (debugLog == true) {
+      print(log);
+    }else{
+      printError('Debug log is disabled');
     }
   }
 }
