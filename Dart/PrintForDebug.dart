@@ -29,35 +29,36 @@
 ///    Utilisation:
 ///    - PrintForDebug.printList([1, 2, 3, 'a', 'b']);
 ///
-/// 5. printError: Permet d'imprimer un message d'erreur dans la console.
-///   Le message est imprimé en rouge pour le distinguer des autres messages.
+/// 5. printAlert: Permet d'imprimer une alerte en rouge.
+///    La chaîne de caractères est imprimée en rouge.
 ///
 ///    Utilisation:
-///   - PrintForDebug.printError('No file selected.');
+///    - PrintForDebug.printAlert('Alerte importante');
 ///
-/// 6. printWarning: Permet d'imprimer un message d'avertissement dans la console.
-///   Le message est imprimé en jaune pour le distinguer des autres messages.
-///
-///   Utilisation:
-///   - PrintForDebug.printError('Low disk space.');
-///
-/// 7. printInfo: Permet d'imprimer un message d'information dans la console.
-///    Le message est imprimé en bleu pour le distinguer des autres messages.
+/// 6. printWarning: Permet d'imprimer un avertissement en jaune.
+///    La chaîne de caractères est imprimée en jaune.
 ///
 ///    Utilisation:
-///    - PrintForDebug.printInfo('User logged in.');
+///    - PrintForDebug.printWarning('Avertissement');
 ///
-/// 8. printSuccess: Permet d'imprimer un message de succès dans la console.
-///    Le message est imprimé en vert pour le distinguer des autres messages.
+/// 7. printInfo: Permet d'imprimer une information en bleu.
+///    La chaîne de caractères est imprimée en bleu.
 ///
 ///    Utilisation:
-///    - PrintForDebug.printSuccess('operation success.');
+///    - PrintForDebug.printInfo('Information');
+///
+/// 8. printValidate: Permet d'imprimer une validation en vert.
+///    La chaîne de caractères est imprimée en vert.
+///
+///    Utilisation:
+///    - PrintForDebug.printValidate('Validation');
+///
 ///
 /// *  Tips:
 ///    Pour faciliter le retrait des prints lors du deployments ajouter : // TODO: supprimer le print
 ///    avant chaque appel à PrintForDebug.printMap ou PrintForDebug.printString
 ///    et utiliser la fonction de recherche de l'IDE pour trouver tous les appels
-part of collecte_chimie;
+
 
 class PrintForDebug {
   static bool debugLog = false;
@@ -71,23 +72,23 @@ class PrintForDebug {
   }
 
   static void printString(String debugPhrases) {
-    if (kDebugMode) {
-      print(debugPhrases);
-    }
+    print(debugPhrases);
   }
 
   static void printListFor(List<dynamic> debugList, int index) {
-    if (kDebugMode) {
-      for (var i = 0; i <= index; i++) {
-        print('$index : ${debugList[i]}');
-      }
+  if (kDebugMode)
+    {
+    for (var i = 0; i <= index; i++) {
+      print('$index : ${debugList[i]}');
+    }
     }
   }
 
   static void printList(List<dynamic> debugList) {
-    if (kDebugMode) {
+      if (kDebugMode)
+      {
       print(debugList);
-    }
+      }
   }
 
   static void printError(String error) {
@@ -104,7 +105,7 @@ class PrintForDebug {
     if (kDebugMode) {
       print(ANSI_YELLOW + "WARNING: " + warning + ANSI_RESET);
     }
-  }
+    }
 
   static void printInfo(String info) {
     final String ANSI_BLUE = "\u001B[34m";
@@ -133,7 +134,7 @@ class PrintForDebug {
     if(debugLog == false){
       printError('Debug log is disable');
     }
-  }
+    }
 
   static void writeLog(String log) {
     if (debugLog == true) {
@@ -141,5 +142,6 @@ class PrintForDebug {
     }else{
       printError('Debug log is disabled');
     }
-  }
+    }
+
 }
